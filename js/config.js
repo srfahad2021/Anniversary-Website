@@ -14,7 +14,7 @@ export const CONFIG = {
 
   // When the site unlocks (local time). Before this → lock screen.
   // Format: YYYY-MM-DD — unlocks at midnight (00:00:00) on this date.
-  unlockDate: '2026-07-01',
+  unlockDate: '2026-06-01',
 
   // Set to true to skip lock screen during development/preview
   devBypassLock: false,
