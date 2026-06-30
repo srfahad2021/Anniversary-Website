@@ -16,7 +16,7 @@ export const CONFIG = {
   // Format: YYYY-MM-DD — unlocks at midnight (00:00:00) on this date. 
   unlockDate: '2026-07-01',
 
-  // Set to true to skip lock screen during development/preview
+  // Set to true to skip lock screen during development
   devBypassLock: false,
 
   // Relationship start date (for "Time Together" counter)
