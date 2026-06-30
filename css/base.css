@@ -1,0 +1,154 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-plum);
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--white);
+  background: var(--bg-plum);
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--bg-plum);
+}
+
+/* Full-screen scenes */
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  padding:
+    calc(var(--safe-top) + var(--scene-padding))
+    calc(var(--safe-right) + var(--scene-padding))
+    calc(var(--safe-bottom) + var(--scene-padding))
+    calc(var(--safe-left) + var(--scene-padding));
+  transition: opacity 0.01s;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.scene-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Typography */
+.script-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  font-weight: 400;
+  color: var(--rose-pink);
+  text-shadow: var(--glow-pink);
+  line-height: 1.2;
+}
+
+.section-title {
+  font-family: var(--font-script);
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  color: var(--rose-pink);
+  text-shadow: var(--glow-pink);
+  margin-bottom: 0.5rem;
+}
+
+/* Global canvas layers */
+#global-canvas,
+#intro-canvas,
+#love-meter-canvas,
+#interactive-canvas,
+#finale-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#interactive-canvas {
+  pointer-events: auto;
+  z-index: 2;
+}
+
+#touch-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+/* Transition overlay */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  background: var(--bg-plum);
+}
+
+.transition-overlay.active {
+  pointer-events: auto;
+}
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Utility */
+.glow-text {
+  text-shadow: var(--glow-pink), 0 0 80px rgba(255, 214, 231, 0.15);
+}

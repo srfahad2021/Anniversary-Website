@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#120B16">
+  <title>Happy Anniversary ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/scenes.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Global floating effects layer -->
+    <canvas id="global-canvas" aria-hidden="true"></canvas>
+    <div id="touch-hearts" aria-hidden="true"></div>
+
+    <!-- Music controls (hidden until unlocked) -->
+    <div id="music-controls" class="music-controls hidden" aria-label="Music controls">
+      <button id="music-play" class="music-btn" aria-label="Play music">▶</button>
+      <button id="music-pause" class="music-btn" aria-label="Pause music">⏸</button>
+      <input type="range" id="music-volume" class="music-volume" min="0" max="100" value="70" aria-label="Volume">
+      <button id="music-mute" class="music-btn" aria-label="Mute music">🔊</button>
+    </div>
+
+    <!-- SCENE: Lock Screen -->
+    <section id="scene-lock" class="scene scene-lock active" data-scene="lock">
+      <div class="lock-sky"></div>
+      <div class="lock-stars"></div>
+      <div class="lock-content">
+        <div class="lock-heart">❤️</div>
+        <p class="lock-message">A surprise is waiting only for you.</p>
+        <div class="countdown" id="countdown">
+          <div class="countdown-unit"><span id="cd-hours">00</span><small>Hours</small></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit"><span id="cd-minutes">00</span><small>Minutes</small></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit"><span id="cd-seconds">00</span><small>Seconds</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENE: Cinematic Intro -->
+    <section id="scene-intro" class="scene scene-intro" data-scene="intro">
+      <canvas id="intro-canvas"></canvas>
+      <div class="intro-text hidden" id="intro-text">
+        <h1 class="script-title">Happy Anniversary</h1>
+        <p class="intro-names" id="intro-names"></p>
+      </div>
+    </section>
+
+    <!-- SCENE 1: Welcome -->
+    <section id="scene-welcome" class="scene scene-welcome" data-scene="welcome">
+      <div class="scene-bg welcome-bg"></div>
+      <div class="welcome-petals" id="welcome-petals"></div>
+      <div class="scene-content">
+        <div class="typing-container" id="welcome-typing"></div>
+        <button class="btn-primary btn-glow" id="btn-welcome" data-next="journey">
+          Begin Our Story ❤️
+        </button>
+      </div>
+    </section>
+
+    <!-- SCENE 2: Journey -->
+    <section id="scene-journey" class="scene scene-journey" data-scene="journey">
+      <div class="scene-bg journey-bg"></div>
+      <div class="scene-content journey-content">
+        <h2 class="script-title journey-title">Our Beautiful Memories</h2>
+        <p class="journey-subtitle" id="journey-subtitle"></p>
+        <button class="btn-primary btn-glow" data-next="gallery">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 3: Gallery -->
+    <section id="scene-gallery" class="scene scene-gallery" data-scene="gallery">
+      <div class="scene-bg gallery-bg"></div>
+      <div class="scene-content gallery-content">
+        <h2 class="section-title">Our Moments</h2>
+        <div class="gallery-track-wrapper">
+          <div class="gallery-track" id="gallery-track"></div>
+        </div>
+        <p class="gallery-hint">Swipe to explore</p>
+        <button class="btn-primary btn-glow" data-next="love-meter">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 4: Love Meter -->
+    <section id="scene-love-meter" class="scene scene-love-meter" data-scene="love-meter">
+      <canvas id="love-meter-canvas"></canvas>
+      <div class="love-meter-content" id="love-meter-content">
+        <div class="hearts-pair" id="hearts-pair">
+          <div class="name-heart" id="heart-left"></div>
+          <div class="name-heart" id="heart-right"></div>
+        </div>
+        <div class="love-meter-display hidden" id="love-meter-display">
+          <div class="combined-names" id="combined-names"></div>
+          <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+          <div class="meter-percent" id="meter-percent">0%</div>
+        </div>
+        <div class="infinite-love hidden" id="infinite-love">
+          <span class="infinity">∞</span>
+          <p>Infinite Love</p>
+        </div>
+        <button class="btn-primary btn-glow hidden" id="btn-love-meter" data-next="reasons">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 5: 100 Reasons -->
+    <section id="scene-reasons" class="scene scene-reasons" data-scene="reasons">
+      <div class="scene-bg reasons-bg"></div>
+      <div class="scene-content reasons-content">
+        <h2 class="section-title">100 Reasons I Love You</h2>
+        <div class="card-stack" id="card-stack"></div>
+        <div class="card-nav">
+          <button class="card-nav-btn" id="card-prev" aria-label="Previous reason">←</button>
+          <span class="card-counter" id="card-counter">Reason 1 / 100</span>
+          <button class="card-nav-btn" id="card-next" aria-label="Next reason">→</button>
+        </div>
+        <button class="btn-primary btn-glow" data-next="letter">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 6: Love Letter -->
+    <section id="scene-letter" class="scene scene-letter" data-scene="letter">
+      <div class="scene-bg letter-bg"></div>
+      <div class="scene-content letter-content">
+        <div class="letter-stage" id="letter-stage">
+          <div class="envelope" id="envelope">
+            <div class="envelope-body"></div>
+            <div class="envelope-flap"></div>
+          </div>
+          <div class="letter-paper" id="letter-paper">
+            <div class="letter-text" id="letter-text"></div>
+            <span class="typing-cursor" id="letter-cursor">|</span>
+          </div>
+        </div>
+        <button class="btn-primary btn-glow hidden" id="btn-letter" data-next="timer">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 7: Time Together -->
+    <section id="scene-timer" class="scene scene-timer" data-scene="timer">
+      <div class="scene-bg timer-bg"></div>
+      <div class="scene-content timer-content">
+        <div class="timer-heart">❤️</div>
+        <p class="timer-label">We've been together for</p>
+        <div class="timer-display" id="timer-display">
+          <div class="timer-unit"><span id="t-years">0</span><small>Years</small></div>
+          <div class="timer-unit"><span id="t-months">0</span><small>Months</small></div>
+          <div class="timer-unit"><span id="t-days">0</span><small>Days</small></div>
+          <div class="timer-unit"><span id="t-hours">0</span><small>Hours</small></div>
+          <div class="timer-unit"><span id="t-minutes">0</span><small>Minutes</small></div>
+          <div class="timer-unit"><span id="t-seconds">0</span><small>Seconds</small></div>
+        </div>
+        <button class="btn-primary btn-glow" data-next="interactive">Continue ❤️</button>
+      </div>
+    </section>
+
+    <!-- SCENE 8: Interactive Love -->
+    <section id="scene-interactive" class="scene scene-interactive" data-scene="interactive">
+      <canvas id="interactive-canvas"></canvas>
+      <div class="interactive-hint" id="interactive-hint">Touch anywhere ❤️</div>
+      <button class="btn-primary btn-glow interactive-continue hidden" id="btn-interactive" data-next="final">Continue ❤️</button>
+    </section>
+
+    <!-- SCENE 9: Final Message -->
+    <section id="scene-final" class="scene scene-final" data-scene="final">
+      <div class="scene-bg final-bg"></div>
+      <div class="scene-content final-content">
+        <div class="final-heart">❤️</div>
+        <div class="final-text" id="final-text"></div>
+        <button class="btn-primary btn-glow btn-large" id="btn-final" data-next="finale">
+          ❤️ Click Me ❤️
+        </button>
+      </div>
+    </section>
+
+    <!-- SCENE 10: Grand Finale -->
+    <section id="scene-finale" class="scene scene-finale" data-scene="finale">
+      <canvas id="finale-canvas"></canvas>
+      <div class="finale-content hidden" id="finale-content">
+        <p class="finale-question">Will you continue making memories with me forever?</p>
+        <div class="finale-heart-big">❤️</div>
+        <h2 class="finale-title">Forever Starts Again</h2>
+        <div class="forever-timer" id="forever-timer">
+          <div class="timer-unit"><span id="f-years">00</span><small>Years</small></div>
+          <div class="timer-unit"><span id="f-months">00</span><small>Months</small></div>
+          <div class="timer-unit"><span id="f-days">00</span><small>Days</small></div>
+          <div class="timer-unit"><span id="f-hours">00</span><small>Hours</small></div>
+          <div class="timer-unit"><span id="f-minutes">00</span><small>Minutes</small></div>
+          <div class="timer-unit"><span id="f-seconds">01</span><small>Seconds</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transition overlay -->
+    <div id="transition-overlay" class="transition-overlay" aria-hidden="true"></div>
+  </div>
+
+  <audio id="bg-music" loop preload="auto"></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

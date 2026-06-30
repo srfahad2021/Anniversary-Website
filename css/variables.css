@@ -1,0 +1,35 @@
+:root {
+  /* Color palette */
+  --bg-plum: #120B16;
+  --rose-pink: #FFD6E7;
+  --soft-pink: #F8C8DC;
+  --rose-gold: #E6B7C1;
+  --luxury-gold: #FFD700;
+  --white: #FFFFFF;
+
+  /* Typography */
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Spacing & layout */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --scene-padding: clamp(1.25rem, 5vw, 2rem);
+
+  /* Animation */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 0.4s;
+  --duration-normal: 0.8s;
+  --duration-slow: 1.4s;
+
+  /* Effects */
+  --glow-pink: 0 0 30px rgba(255, 214, 231, 0.4);
+  --glow-gold: 0 0 40px rgba(255, 215, 0, 0.35);
+  --glow-soft: 0 0 60px rgba(248, 200, 220, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 214, 231, 0.2);
+}
